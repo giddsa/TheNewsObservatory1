@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
@@ -54,11 +64,12 @@
                     document.getElementById("detail-date").textContent = `تاريخ الخبر: ${news.date}`;
                     document.getElementById("detail-image").src = news.image;
                     document.getElementById("detail-content").textContent = news.content;
-                } else {
-                    document.getElementById("detail-title").textContent = "الخبر غير موجود";
                 }
-            })
-            .catch(error => console.error("خطأ في تحميل الخبر:", error));
+            });
     </script>
+</body>
+</html>
+<!-- partial -->
+  
 </body>
 </html>
