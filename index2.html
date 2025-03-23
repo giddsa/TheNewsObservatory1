@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الخبر - المرصد الإخباري</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header>
+        <h1>📰 المرصد الإخباري</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="#">سياسة</a></li>
+                <li><a href="#">اقتصاد</a></li>
+                <li><a href="#">رياضة</a></li>
+                <li><a href="#">تكنولوجيا</a></li>
+            </ul>
+        </nav>
+        <div class="social-media">
+            <a href="https://facebook.com" target="_blank"><img src="facebook-logo.png" alt="Facebook"></a>
+            <a href="https://instagram.com" target="_blank"><img src="instagram-logo.png" alt="Instagram"></a>
+        </div>
+    </header>
+
+    <!-- تفاصيل الخبر -->
+    <main>
+        <section id="news-detail">
+            <h2 id="detail-title">عنوان الخبر</h2>
+            <p id="detail-date">تاريخ الخبر: </p>
+            <img id="detail-image" src="" alt="صورة الخبر">
+            <p id="detail-content">محتوى الخبر...</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 جميع الحقوق محفوظة - المرصد الإخباري</p>
+    </footer>
+
+    <script>
+        // جلب بيانات الخبر من الـ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const newsId = urlParams.get('id');
+
+        fetch("news.json")
+            .then(response => response.json())
+            .then(newsData => {
+                const news = newsData.find(item => item.id == newsId);
+                if (news) {
+                    document.getElementById("detail-title").textContent = news.title;
+                    document.getElementById("detail-date").textContent = `تاريخ الخبر: ${news.date}`;
+                    document.getElementById("detail-image").src = news.image;
+                    document.getElementById("detail-content").textContent = news.content;
+                }
+            });
+    </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
