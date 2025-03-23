@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 // رابط للخبر
                 const newsLink = document.createElement("a");
-                newsLink.href = `index2-detail.html?id=${news.id}`; // رابط صفحة التفاصيل
+                newsLink.href = `index2.html?id=${news.id}`; // رابط صفحة التفاصيل
                 newsLink.style.textDecoration = "none";
                 newsLink.style.color = "inherit";
 
