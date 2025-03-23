@@ -3,22 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المرصد الإخباري</title>
+    <title>تفاصيل الخبر - المرصد الإخباري</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- قسم العناوين العاجلة -->
-    <div class="breaking-news">
-        <marquee direction="right" scrollamount="6">📢 عاجل: اكتشاف علمي جديد يهز الأوساط العلمية! | 📢 عاجل: ارتفاع في أسعار النفط بنسبة 3% اليوم...</marquee>
-    </div>
 
     <!-- الهيدر -->
     <header>
         <h1>📰 المرصد الإخباري</h1>
         <nav>
             <ul>
-                <li><a href="#">الرئيسية</a></li>
+                <li><a href="index.html">الرئيسية</a></li>
                 <li><a href="#">سياسة</a></li>
                 <li><a href="#">اقتصاد</a></li>
                 <li><a href="#">رياضة</a></li>
@@ -31,13 +26,13 @@
         </div>
     </header>
 
-    <!-- قسم الأخبار الرئيسية -->
+    <!-- تفاصيل الخبر -->
     <main>
-        <section id="main-news">
-            <h2>📌 الأخبار الرئيسية</h2>
-            <div class="news-container" id="news">
-                <!-- الأخبار ستُضاف هنا تلقائيًا -->
-            </div>
+        <section id="news-detail">
+            <h2 id="detail-title">عنوان الخبر</h2>
+            <p id="detail-date">تاريخ الخبر: </p>
+            <img id="detail-image" src="" alt="صورة الخبر">
+            <p id="detail-content">محتوى الخبر...</p>
         </section>
     </main>
 
@@ -45,6 +40,25 @@
         <p>&copy; 2025 جميع الحقوق محفوظة - المرصد الإخباري</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // جلب بيانات الخبر من الـ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const newsId = urlParams.get('id');
+
+        fetch("news.json")
+            .then(response => response.json())
+            .then(newsData => {
+                const news = newsData.find(item => item.id == newsId);
+                if (news) {
+                    document.getElementById("detail-title").textContent = news.title;
+                    document.getElementById("detail-date").textContent = `تاريخ الخبر: ${news.date}`;
+                    document.getElementById("detail-image").src = news.image;
+                    document.getElementById("detail-content").textContent = news.content;
+                } else {
+                    document.getElementById("detail-title").textContent = "الخبر غير موجود";
+                }
+            })
+            .catch(error => console.error("خطأ في تحميل الخبر:", error));
+    </script>
 </body>
 </html>
